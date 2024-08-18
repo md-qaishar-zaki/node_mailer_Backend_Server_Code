@@ -7,11 +7,9 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -20,7 +18,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// API route to handle form submission
 app.post('/submit-form', (req, res) => {
   const { firstName, lastName, phoneNo, address } = req.body;
 
