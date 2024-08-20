@@ -2,25 +2,26 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5000;
- 
+
+// CORS setup
 const corsOptions = {
-  origin: 'http://localhost:5000/submit-form',  
+  origin: 'http://localhost:3000', // Update this to your frontend URL
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 };
 
-app.use(cors(corsOptions)); 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
+// Create transporter for Nodemailer
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: 'qaisharzaki@gmail.com', // Your Gmail address
+    pass: 'Nawada@1...', // Your Gmail App Password
   },
 });
 
@@ -28,8 +29,8 @@ app.post('/submit-form', (req, res) => {
   const { firstName, lastName, phoneNo, address } = req.body;
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: 'qaisharzaki@gmail.com',
+    from: 'qaisharzaki@gmail.com', // Your email
+    to: 'qaisharzaki@gmail.com', // Recipient email
     subject: 'Form Submission',
     text: `You have received a new form submission:
     
@@ -57,4 +58,3 @@ app.listen(port, () => {
 app.get('/', (req, res) => {
   res.send('Welcome to the server!');
 });
-
