@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 
 // CORS setup
 const corsOptions = {
-  origin: 'http://localhost:3000', // Update this to your frontend URL
+  origin: 'https://pragatisinterio.in/', // Update this to your frontend URL
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 };
